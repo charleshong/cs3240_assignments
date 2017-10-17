@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 
+from django.views import generic
+
+
+class BookListView(generic.ListView):
+    model = Book
+
 
 def index(request):
     """
@@ -12,6 +18,7 @@ def index(request):
     # Available books (status = 'a')
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
     num_authors = Author.objects.count()  # The 'all()' is implied by default.
+
 
     # Render the HTML template index.html with the data in the context variable
     return render(

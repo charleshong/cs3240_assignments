@@ -14,22 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.conf.urls import url
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url('admin/', admin.site.urls),
 ]
 
 # Use include() to add URLS from the catalog application
 from django.conf.urls import include
 urlpatterns += [
-    path(r'^catalog/', include('catalog.urls')),
+    url(r'^catalog/', include('catalog.urls')),
 ]
 
-# Add URL maps to redirect the base URL to our application
+#Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
 urlpatterns += [
-    path(r'^$', RedirectView.as_view(url='/catalog/', permanent=True)),
+    url(r'^$', RedirectView.as_view(url='/catalog/', permanent=True)),
 ]
 
 # Use static() to add url mapping to serve static files during development (only)
