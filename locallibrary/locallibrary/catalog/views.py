@@ -24,9 +24,6 @@ def index(request):
 from django.views import generic
 
 class BookListView(generic.ListView):
-    """
-    Generic class-based view for a list of books.
-    """
     model = Book
     paginate_by = 10
 
